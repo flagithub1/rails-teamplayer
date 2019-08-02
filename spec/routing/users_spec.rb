@@ -24,5 +24,4 @@ RSpec.describe 'routes for users' do
       action: 'changepw'
     )
   end
-
 end
