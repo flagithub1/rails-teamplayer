@@ -62,19 +62,21 @@ Install with `bundle install`.
 
 ## Structure
 
-This template follows the standard project structure in Rails.
+This template follows the standard [project structure](https://gist.git.generalassemb.ly/danman01/64472678e25552412050c237ced48964) in Rails.
 
 `curl` command scripts are stored in [`curl-scripts`](curl-scripts) with names that
 correspond to API actions.
 
 User authentication is built-in.
 
+Tests (also called specs) are located in the `spec` folder.
+
 ## Tasks
 
 Developers should run these often!
 
 -   `bin/rails routes` lists the endpoints available in your API.
--   `bin/rspec spec` runs automated tests.
+-   `bin/rspec spec` runs automated tests located in the `spec` folder.
 -   `bin/rails console` opens a REPL that pre-loads the API.
 -   `bin/rails db` opens your database client and loads the correct database.
 -   `bin/rails server` starts the API.
