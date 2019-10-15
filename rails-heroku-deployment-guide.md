@@ -33,11 +33,11 @@ Now you're set up to use Heroku.
 
 To deploy a new application to Heroku:
 
-- [ ] [Create a New Heroku App](https://git.generalassemb.ly/ga-wdi-boston/rails-heroku-setup-guide#create-a-new-heroku-app)
-- [ ] [Push `master` to Heroku](https://git.generalassemb.ly/ga-wdi-boston/rails-heroku-setup-guide#push-master-to-heroku)
-- [ ] [Update Heroku's Database](https://git.generalassemb.ly/ga-wdi-boston/rails-heroku-setup-guide#update-herokus-database)
-- [ ] [Set Your Secrets](https://git.generalassemb.ly/ga-wdi-boston/rails-heroku-setup-guide#set-your-secrets)
-- [ ] [Check Your Work](https://git.generalassemb.ly/ga-wdi-boston/rails-heroku-setup-guide#check-your-work)
+- [ ] [Create a New Heroku App](https://git.generalassemb.ly/ga-wdi-boston/rails-api-template/blob/master/rails-heroku-deployment-guide.md#create-a-new-heroku-app)
+- [ ] [Push `master` to Heroku](https://git.generalassemb.ly/ga-wdi-boston/rails-api-template/blob/master/rails-heroku-deployment-guide.md#push-master-to-heroku)
+- [ ] [Update Heroku's Database](https://git.generalassemb.ly/ga-wdi-boston/rails-api-template/blob/master/rails-heroku-deployment-guide.md#update-herokus-database)
+- [ ] [Set Your Secrets](https://git.generalassemb.ly/ga-wdi-boston/rails-api-template/blob/master/rails-heroku-deployment-guide.md#setup-your-production-environment)
+- [ ] [Check Your Work](https://git.generalassemb.ly/ga-wdi-boston/rails-api-template/blob/master/rails-heroku-deployment-guide.md#check-your-work)
 
 Next, we will take a look at each of these steps in detail.
 
@@ -95,19 +95,20 @@ In your Heroku app, we will be using the `heroku config` command. From the root 
 1. Configure CORS for your production app by setting the `CLIENT_ORIGIN` variable and point it to your client's root URL:
    - `heroku config:set CLIENT_ORIGIN=https://<github-username>.github.io`
 
-1. Configure the `RAILS_MASTER_KEY` variable and set it to the same `config/master.key` file you have locally (this was automatically generated when you ran `bin/rails credentials:edit`):
-   - `heroku config:set RAILS_MASTER_KEY="$(< config/master.key)"`
+
+1. Configure application secret key, depending on Rails version.
+	- _Rails Versions >= 5.2_: Configure the `RAILS_MASTER_KEY` variable and set it to the same `config/master.key` file you have locally (this was automatically generated when you ran `bin/rails credentials:edit`):
+   		- `heroku config:set RAILS_MASTER_KEY="$(< config/master.key)"`
    
-1. Check your config variables at any time by typing `heroku config`. Make sure you have a `RAILS_MASTER_KEY` and a `CLIENT_ORIGIN`.
+		- Check your config variables at any time by typing `heroku config`. Make sure you have a `RAILS_MASTER_KEY` and a `CLIENT_ORIGIN`.
+
+	- _Rails Versions < 5.2_: Configure `SECRET_KEY_BASE` variable:
+		- `heroku config:set SECRET_KEY_BASE=$(rake secret)`
+		- You can verify you set this correctly with `heroku config:get SECRET_KEY_BASE` 
 
 - Note: You can also edit your app's config from the Heroku website. It's worth having a look at your app's dashboard on the Heroku website.
 
-### Run your server
-
-Heroku will automatically run your server and update your live application when you push updates to it or change config variables.
-
-   - If you need to restart your server at any time, run `heroku restart`
-   - If you need to view live server logs, run `heroku logs --tail`. Quit with `ctrl-c`
+### Check Your Work
 
 Ready to see your live application? Run:
 
@@ -120,6 +121,11 @@ You'll probably see something like this:
 ![](https://cloud.githubusercontent.com/assets/388761/13259005/93c9fdf6-da23-11e5-9c90-19c59580944a.png)
 
 That's normal, **unless** you have defined a root route. Try going to `/examples` to get some actual output (even if it's an empty array).
+
+Heroku will automatically run your server and update your live application when you push updates to it or change config variables.
+
+   - If you need to restart your server at any time, run `heroku restart`
+   - If you need to view live server logs, run `heroku logs --tail`. Quit with `ctrl-c`
 
 ---
 
