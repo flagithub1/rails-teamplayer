@@ -7,8 +7,8 @@ default: &default
 
 development:
   <<: *default
-  database: <%= team_player %>_development
+  database: <%= project_name %>_development
 
 test:
   <<: *default
-  database: <%= team_player %>_test
+  database: <%= project_name %>_test
