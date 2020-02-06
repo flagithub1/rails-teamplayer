@@ -1,4 +1,5 @@
 FULL STACK PROJECT:STAR LookApp
+link to client repository:https://github.com/flagithub1/client_teamplayer
 Star lookApp, as the name  suggests, it’s an app that let you interact, kinda ,with  the players of your your favorite team  after you signed up and become a member ,it’s a paid service app, because ,we’re dealing with public figures and privacy is a big deal ,so for this reason  we ‘re charging  a li’l fee of a thousand dollars, and if you happen to be a season ticket holder, you get it  for free, just sign up, this app is highly secured to prevent any type of fraudulent activity, and violators will be prosecuted. This app is still in the building phase, you might get a bad request or not found if anybody without proper credentials try to access it.
 
 List of technologies used so far:

@@ -18,7 +18,7 @@ class TeamsController < OpenReadController
     @team = current_user.teams.build(team_params)
 
     if @team.save
-      render json: @team, status: :created, location: @team
+      render json: @team, status: :created
     else
       render json: @team.errors, status: :unprocessable_entity
     end
